@@ -3,7 +3,7 @@ writer:liyiming
 date: 2018/11/13
 version: 0.0
 module: regfile
-fun: 32register
+func: 32register
 */
 module regfile(
     a_addr,

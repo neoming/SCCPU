@@ -3,7 +3,7 @@ writer:liyiming
 date: 2018/11/13
 version: 0.0
 module: clu
-fun: control unit
+func: control unit
 */
 module clu(
     op,
