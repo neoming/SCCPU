@@ -14,13 +14,5 @@ module mux2x32(
     input [31:0]a0,a1;
     input s;
     output [31:0]y;
-    function [31:0] select;
-            input [31:0]a0,a1;
-            input s;
-            case (s)
-                1'b0: select = a0;
-                1'b1: select = a1;
-            endcase
-    endfunction
-    assign y = select(a0,a1,s);
+    assign y = s? a1 : a0;
 endmodule
