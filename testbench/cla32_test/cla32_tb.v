@@ -1,5 +1,5 @@
 `timescale 1ns/100ps
-`include "../../cla32.v"
+`include "../../src/cla32.v"
 module test_tb;
 
    reg [31:0]A,B;
