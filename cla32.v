@@ -116,7 +116,7 @@ module cla_2(
     g_p g_p0 (g,p,c_in,g_out,p_out,c_out);
 endmodule
 
-module gp(
+module g_p(
     g,
     p,
     c_in,

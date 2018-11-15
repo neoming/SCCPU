@@ -5,6 +5,14 @@ version: 0.0
 module: cpu
 func: 数据流实现的cpu
 */
+`include "clu.v"
+`include "dff32.v"
+`include "mux2x32.v"
+`include "cla32.v"
+`include "mux2x5.v"
+`include "alu.v"
+`include "regfile.v"
+
 module sccpu_dataflow (
     clock,
     resetn,

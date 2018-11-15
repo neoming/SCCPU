@@ -5,6 +5,9 @@ version: 0.0
 module: sccomp_dataflow
 func: simple soc
 */
+`include "scinstmem.v"
+`include "scdatamem.v" 
+`include "sccpu_dataflow.v"
 module sccomp_dataflow(
     clock,
     resetn,

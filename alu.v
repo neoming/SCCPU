@@ -5,6 +5,9 @@ version: 0.0
 module: ali
 func: alu
 */
+`include "shifter.v"
+`include "mux2x32.v"
+`include "cla32.v"
 module alu(
     a,
     b,

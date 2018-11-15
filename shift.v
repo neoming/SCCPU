@@ -5,7 +5,7 @@ version: 0.0
 module: shift
 func: shift operation
 */
-module shift(
+module shifter(
     d,
     sa,
     right,
