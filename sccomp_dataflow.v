@@ -5,17 +5,14 @@ version: 0.0
 module: sccomp_dataflow
 func: simple soc
 */
-`include "scinstmem.v"
-`include "scdatamem.v" 
-`include "sccpu_dataflow.v"
-module sccomp_dataflow(
+module sccomp_dataflow(    
     clock,
     resetn,
+    mem_clk,
     inst,
     pc,
     aluout,
-    memout,
-    mem_clk     
+    memout
 );
     input clock,resetn,mem_clk;
     output [31:0] inst,pc,aluout,memout;

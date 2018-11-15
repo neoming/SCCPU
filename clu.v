@@ -22,10 +22,13 @@ module clu(
 );
     input [5:0]op,func;
     input z;
-    output wmem,wreg,jal,m2reg,shift,aluimm,sext,wmeml
+    output wmem,wreg,jal,m2reg,shift,aluimm,sext,regrt;
     output [3:0] aluc;
     output [1:0] pcsource;
 
+    reg  wmem,wreg,jal,m2reg,shift,aluimm,sext,regrt;
+    reg [3:0] aluc;
+    reg [1:0] pcsource;
     always @(*) begin
         case (op)
             6'b000000: begin//special code
@@ -286,7 +289,7 @@ module clu(
                 aluc[2:0] <= 3'b110;
                 pcsource <= 2'b00;
             end
-            6'b0000.0: begin//j
+            6'b00000: begin//j
                 wreg <= 1'b0;
                 //regrt <= 1'b1;
                 //jal <= 1'b0;

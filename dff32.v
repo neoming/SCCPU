@@ -14,6 +14,7 @@ module dff32(
     input [31:0]d;
     input clk,rst;
     output [31:0]q;
+    reg [31:0]q;
     always @(posedge clk, posedge rst) begin
         if(rst == 0) q<=0;
         else q<=d;

@@ -5,9 +5,6 @@ version: 0.0
 module: ali
 func: alu
 */
-`include "shifter.v"
-`include "mux2x32.v"
-`include "cla32.v"
 module alu(
     a,
     b,
@@ -24,10 +21,10 @@ module alu(
     wire [31:0] d_xor = a ^ b;
     wire [31:0] d_lui = {b[15:0],16'h0};
     wire [31:0] d_and_or = aluc[2]? d_or:d_and;
-    wire [31:0] d_xor_lui = alu[2]? d_lui:d_xor;
+    wire [31:0] d_xor_lui = aluc[2]? d_lui:d_xor;
     wire [31:0] d_as,d_sh;
     addsub32 as32(a,b,aluc[2],d_as);
-    shift shifter (b,a[4:0],aluc[2],alu[3],d_sh);
+    shifter shift (b,a[4:0],aluc[2],aluc[3],d_sh);
     mux4x32 select (d_as,d_and_or,d_xor_lui,d_sh,aluc[1:0],r);
     assign z = ~|r; 
 endmodule

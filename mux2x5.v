@@ -5,7 +5,7 @@ version: 0.0
 module: mux
 func: 5位2选1多路器
 */
-module mux2x32(
+module mux2x5(
     a0,
     a1,
     s,

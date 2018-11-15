@@ -9,16 +9,15 @@ module cla32 (
     a,
     b,
     ci,
-    s,
-    co
+    s//,co
 );
     input [31:0] a,b;
     input ci;
     output [31:0] s;
-    output co;
+    //output co;
     wire g_out,p_out;
     cla_32 cla (a,b,ci,g_out,p_out,s);
-    assign co = g_out|p_out&ci;
+    //assign co = g_out|p_out&ci;
 endmodule
 
 module cla_32(

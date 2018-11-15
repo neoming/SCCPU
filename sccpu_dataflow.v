@@ -5,14 +5,6 @@ version: 0.0
 module: cpu
 func: 数据流实现的cpu
 */
-`include "clu.v"
-`include "dff32.v"
-`include "mux2x32.v"
-`include "cla32.v"
-`include "mux2x5.v"
-`include "alu.v"
-`include "regfile.v"
-
 module sccpu_dataflow (
     clock,
     resetn,
@@ -42,16 +34,16 @@ module sccpu_dataflow (
     wire [15:0] imm = {16{e}};
     wire [31:0] immediate = {imm,inst[15:0]};
     dff32 ip (npc,clock,resetn,pc);//inst fetch
-    cla32 pcplus4 (pc,32'h4,1'b0,p4);//pc = pc+4
+    cla32 pcplus4 (pc,32'h4,1'b0,p4 );//pc = pc+4
     cla32 br_adr (p4,offset,1'b0,adr);//pc = pc+offest
     wire [31:0] jpc = {pc[31:28],inst[25:0],2'b00};//jumped pc = pc[31:28]+inst[25:0]+2'b00
-    mux2x32 alu_b (data,immediate,aluimm,alu_b);//decide what is the alu_b
-    mux2x32 alu_a (ra,sa,shift,alu_a);//decide what is the alu_a
+    mux2x32 alu_b (data,immediate,aluimm,alub);//decide what is the alu_b
+    mux2x32 alu_a (ra,sa,shift,alua);//decide what is the alu_a
     mux2x32 result (alu,mem,m2reg,alu_mem);//decide the result of the inst
     mux2x32 link (alu_mem,p4,jal,res);//
-    mux2x5 reg_wn ({inst[15:11],inst[20:16],regrt,reg_dest});//choce the reg_addr
+    mux2x5 reg_wn (inst[15:11],inst[20:16],regrt,reg_dest);//choce the reg_addr
     assign wn = reg_dest|{5{jal}};//jal : r31<-- p4;
     mux4x32 nextpc (p4,adr,ra,jpc,pcsource,npc);//decide the source of the next pc
     regfile rf (inst[25:21],inst[20:16],res,wn,wreg,clock,resetn,ra,data);
-    alu al_unit (alu_a,alu_b,aluc,alu,zero);//alu
+    alu al_unit (alua,alub,aluc,alu,zero);//alu
 endmodule
